@@ -7,6 +7,7 @@ int main()
 {
     ts myts;
 
+    myts.readFile();
     myts.insertCity(10, 20);
     myts.printCities();
 
