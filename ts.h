@@ -7,10 +7,11 @@
 #include <utility>
 #include <list>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
-//typedef list<pair<int, int> > City;
+typedef list<pair<int, int> > Path;
 typedef vector< vector<int> > Matrix;
 
 class ts
@@ -21,18 +22,27 @@ class ts
 
     std::ifstream myfile;
     int total_cities;
+    Path mypath;
 
 public:
     ts();
     ~ts();
     void readFile();
     void insertCity(int, int);
+    void startTrip();
     void printCities();
+    void printPath(int);
 
 private:
 
+    list<int> remainCities;
+
+    int visitNextCity(int);
+
+
 
     void calculateDistances();
+    int calculateTotalDistance();
 };
 
 #endif // TS_H

@@ -8,8 +8,8 @@ int main()
     ts myts;
 
     myts.readFile();
-    myts.insertCity(10, 20);
-    myts.printCities();
+   // myts.printCities();
+    myts.startTrip();
 
 
     return 0;
