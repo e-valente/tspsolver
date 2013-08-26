@@ -7,50 +7,77 @@
 #include <list>
 #include <cstdlib>
 
+using namespace std;
+
+
 ts::ts()
 {
-    mycities = new City;
+    //mycities = new City;
 
 }
+
+ts::~ts()
+{
+    //delete [] mycities;
+}
+
 
 void ts::insertCity(int x, int y)
 {
-    mycities->push_back(std::make_pair(x, y));
+    //mycities->push_back(std::make_pair(x, y));
 }
+
 
 void ts::printCities()
 {
-    City::iterator i;
 
-    for(i = mycities->begin(); i != mycities->end(); i++)
-        std::cout << "x coordenate: " << (*i).first << "\ny coordenate: " << (*i).second << std::endl;
+    cout << "\n\n";
+
+    for(int i = 0; i < total_cities; i++)
+    {
+        for(int j = 0; j < total_cities; j++)
+        {
+            cout << mycities[i][j] << " ";
+        }
+
+        cout << endl;
+    }
+
 }
 
 void ts::readFile()
 {
     char output[100];
-    int x, y;
-    myfile.open("cities.txt");
 
-    if(myfile.is_open())
+    myfile.open("in.txt");
+
+    myfile >> output;
+    total_cities = atoi(output);
+
+
+    //resize -> rows
+    mycities.resize(total_cities);
+
+    //resize ->cols
+    for(int i = 0; i < total_cities; i++)
     {
-        while(!myfile.eof())
+        mycities[i].resize(total_cities);
+    }
+
+
+    for(int i = 0; i < total_cities; i++)
+    {
+        for(int j = 0; j < total_cities; j++)
         {
             myfile >> output;
-            x = atoi(output);
+            mycities[i][j] = atoi(output);
 
-            myfile >> output;
-            y = atoi(output);
-
-            std::cout << "inserindo " << x << " " << y << "\n";
-            insertCity(x, y);
-
-
-
-           // std::cout <<" " <<  output;
         }
-
     }
+
+
+
+    cout << "total de cidade vale: " << total_cities;
 
     myfile.close();
 

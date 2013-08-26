@@ -6,17 +6,25 @@
 #include <string>
 #include <utility>
 #include <list>
+#include <vector>
 
+using namespace std;
 
-typedef std::list<std::pair<int, int> > City;
+//typedef list<pair<int, int> > City;
+typedef vector< vector<int> > Matrix;
 
 class ts
 {
-    City *mycities;
+   // City *mycities;
+
+    Matrix mycities;
+
     std::ifstream myfile;
+    int total_cities;
 
 public:
     ts();
+    ~ts();
     void readFile();
     void insertCity(int, int);
     void printCities();
