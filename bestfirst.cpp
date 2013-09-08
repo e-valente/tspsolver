@@ -1,4 +1,5 @@
-#include "ts.h"
+#include "bestfirst.h"
+
 
 #include <iostream>
 #include <fstream>
@@ -7,29 +8,19 @@
 #include <list>
 #include <algorithm> //find
 #include <cstdlib>
+#include <limits>
 
 using namespace std;
 
 
-ts::ts()
+BestFirst::BestFirst()
 {
     //mycities = new City;
 
 }
 
-ts::~ts()
-{
-    //delete [] mycities;
-}
 
-
-void ts::insertCity(int x, int y)
-{
-    //mycities->push_back(std::make_pair(x, y));
-}
-
-
-void ts::printCities()
+void BestFirst::printCities()
 {
 
     cout << "\n\n";
@@ -46,7 +37,7 @@ void ts::printCities()
 
 }
 
-void ts::readFile()
+void BestFirst::readFile()
 {
     char output[100];
 
@@ -82,7 +73,7 @@ void ts::readFile()
 
 }
 
-void ts::startTrip()
+void BestFirst::startTrip()
 {
     int initialCity, bestInitialCity;
     int minorPath = 9999999;
@@ -110,6 +101,7 @@ void ts::startTrip()
         if(minorPath > currentDistance)
         {
             minorPath = currentDistance;
+            total_distance = currentDistance;
             bestInitialCity = initialCity;
         }
 
@@ -147,7 +139,7 @@ void ts::startTrip()
 
 }
 
-int ts::visitNextCity(int city)
+int BestFirst::visitNextCity(int city)
 {
     int minorDistance = 99999;
     int nextCity = 99999;
@@ -180,7 +172,7 @@ int ts::visitNextCity(int city)
 
 }
 
-int ts::calculateTotalDistance()
+int BestFirst::calculateTotalDistance()
 {
     Path::iterator it;
     int totalDistance = 0;
@@ -195,7 +187,7 @@ int ts::calculateTotalDistance()
 
 }
 
-void ts::printPath(int initialCity)
+void BestFirst::printPath(int initialCity)
 {
     Path::iterator it;
     int i, currentCity;
@@ -211,4 +203,9 @@ void ts::printPath(int initialCity)
 
 
 
+}
+
+int BestFirst::getTotalDistance()
+{
+    return total_distance;
 }

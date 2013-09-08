@@ -4,8 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    ts.cpp
+    bestfirst.cpp \
+    hillclimbing.cpp
 
 HEADERS += \
-    ts.h
+    bestfirst \
+    bestfirst.h \
+    hillclimbing.h
 
