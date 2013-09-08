@@ -12,6 +12,7 @@
 
 HillClimbing::HillClimbing()
 {
+    total_distance = 0;
 
 }
 
@@ -56,8 +57,6 @@ void HillClimbing::startTrip()
 {
     int initialCity, tmpCity, currentBestCityToVisit;
     int minorPath = 9999999;
-    int currentDistance;
-
 
     //coloca cidades para serem visitadas
     for(int i = 0; i < total_cities; i++)
@@ -73,32 +72,49 @@ void HillClimbing::startTrip()
 
     list<int>::iterator it;
 
-    cout << "bufers \n";
 
+    /*
+    cout << "bufers \n";
     for(it = currentBufferCities.begin(); it != currentBufferCities.end(); it++)
     {
         cout << *it;
 
     }
+    */
 
-
-
-    for(int i = 0; i < total_cities; i++)
+    while(!remainCities.empty())
     {
+
+
         while(!currentBufferCities.empty())
         {
             tmpCity = currentBufferCities.front();
             currentBufferCities.pop_front();
-            if(mycities[i][tmpCity] < minorPath ) {
+            if(mycities[initialCity][tmpCity] < minorPath ) {
                // cout <<"comparando distancia de " << i << " ate " << tmpCity <<" vale " <<mycities[i][tmpCity] << "\n";
                 currentBestCityToVisit = tmpCity;
-                minorPath = mycities[i][tmpCity];
+                minorPath = mycities[initialCity][tmpCity];
             }
+
+
 
 
         }
 
+        mypath.push_back(make_pair(currentBestCityToVisit, minorPath));
+        total_distance += minorPath;
+
+       // cout <<" iserindo de " << initialCity << " ate " << currentBestCityToVisit << " dist " << minorPath << "\n";
+
+        remainCities.remove(currentBestCityToVisit);
+        currentBufferCities.clear();
+        makeBufferCities(currentBestCityToVisit);
+        initialCity = currentBestCityToVisit;
+        minorPath = 9999999;
+
     }
+
+
 
 }
 
@@ -109,31 +125,56 @@ void HillClimbing::makeBufferCities(int currentCity)
     int bufferCity, sizeOfRemainCities, sizeCount;
     int count = 0;
 
+
     sizeOfRemainCities = remainCities.size();
 
-    if(sizeOfRemainCities > 2) sizeCount = 3;
-    else if(sizeOfRemainCities == 2) sizeCount = 2;
-    else if(sizeOfRemainCities ==  1) sizeCount = 1;
-    else if(sizeOfRemainCities == 0) sizeCount = 0;
+    if(sizeOfRemainCities > 2) {
+        sizeCount = 3;
+        while(count < sizeCount){
+            bufferCity = currentCity + count + 1;
 
+            if(bufferCity >= total_cities) {
+                bufferCity = 0;
+                currentCity = 0;
+            }
 
+            it = find(remainCities.begin(), remainCities.end(), bufferCity);
+            if(*it == bufferCity)
+            {
+                currentBufferCities.push_back(bufferCity);
+                count++;
+            } else currentCity++;
 
-    while(count < sizeCount){
-        bufferCity = currentCity + count + 1;
-
-        if(bufferCity >= total_cities) {
-            bufferCity = 0;
-            currentCity = 0;
         }
-
-        it = find(remainCities.begin(), remainCities.end(), bufferCity);
-        if(*it == bufferCity)
-        {
-            currentBufferCities.push_back(bufferCity);
-            count++;
-        }
-
     }
+    else if(sizeOfRemainCities == 2) {
+        currentBufferCities.push_back(remainCities.front());
+        currentBufferCities.push_back(remainCities.back());
+    }
+    else if(sizeOfRemainCities ==  1) currentBufferCities.push_back(remainCities.front());
+
 }
 
+int HillClimbing::getTotalDistance()
+{
+    return total_distance;
+}
+
+void HillClimbing::printPath(int initialCity)
+{
+    Path::iterator it;
+    int i, currentCity;
+
+    currentCity = initialCity;
+
+    for(it = mypath.begin(), i = 0; it != mypath.end(); it++, i++)
+    {
+        cout << i + 1 << " - cidade " << currentCity << " ate cidade "
+             << (*it).first << " - dist " << (*it).second << endl;
+        currentCity = (*it).first;
+    }
+
+
+
+}
 

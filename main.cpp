@@ -16,7 +16,7 @@ int main()
     mybestfirst.readFile();
     mybestfirst.startTrip();
 
-    cout <<"\nTotal percorrido: " << mybestfirst.getTotalDistance() << "\n";
+    cout <<"\nTotal percorrido: " << mybestfirst.getTotalDistance() << "\n\n";
 
 
 
@@ -25,8 +25,9 @@ int main()
     cout << "== Hill Climbing ==\n\n";
     myhillclimbing.readFile();
     myhillclimbing.startTrip();
+    myhillclimbing.printPath(0);
 
-    //cout <<"\nTotal percorrido: " << mybestfirst.getTotalDistance() << "\n";
+    cout <<"\nTotal percorrido: " << myhillclimbing.getTotalDistance() << "\n";
 
 
 
