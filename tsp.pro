@@ -5,10 +5,12 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     bestfirst.cpp \
-    hillclimbing.cpp
+    hillclimbing.cpp \
+    beamsearch.cpp
 
 HEADERS += \
     bestfirst \
     bestfirst.h \
-    hillclimbing.h
+    hillclimbing.h \
+    beamsearch.h
 

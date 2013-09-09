@@ -1,3 +1,14 @@
+/*Algoritmo HillClimbing
+ *De maneira geral o algoritmo funciona da seguinte forma:
+ *Para cada cidade visitada ex: cidade 3, escolhe-se as
+ *4 cidades mais adjacentes, no caso 1 e 2 (`a esquerda) e 4 e 5
+ *(à direita). Dessas 4 cidades, nenhuma delas pode ter sido visitada,
+ *caso isso ocorra, ex: cidade 1 ja foi visitada, escolhemos a zero
+ *(vizinho a esquerda) e assim sucessivamente.
+ *Para o mesmo exemplo, se a cidade 5 ja estiver sido visitada,
+ *escolhemos a 6 (vizinho mais a direita), etc.
+ */
+
 #include "hillclimbing.h"
 
 

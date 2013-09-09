@@ -1,3 +1,14 @@
+/*Algoritmo BeamSearch
+ *
+ *De maneira geral o algoritmo funciona da seguinte forma:
+ *Para cada cidade visitada, teremos 5 possiveis caminhos.
+ *Ex: A cidade atual é a 7, escolhemos as 5 cidades mais proximas da cidade 7.
+ *Para cada cidade destas 5 escolhias, escolhemos as respectivas mais proximas.
+ *Entao, somanos o caminho da cidade 7 até a sua mais proxima e a mais proxima desta ultima.
+ *Escolhemos a menor soma e visitamos as duas cidades pertencentes a essa menor soma.
+ *O algorimto é iterado, até acabarem as cidades.
+ */
+
 #include "beamsearch.h"
 
 #include <iostream>

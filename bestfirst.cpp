@@ -1,3 +1,10 @@
+/*Algoritmo BestFirst
+ */
+/*Detalhes de implementacao sao baseados
+ *do seguinte artigo:
+ * https://s3.amazonaws.com/accredible_work/57/AIreport.pdf?1361153888
+ */
+
 #include "bestfirst.h"
 
 
