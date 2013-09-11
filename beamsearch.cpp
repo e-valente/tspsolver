@@ -1,5 +1,15 @@
 /*Algoritmo BeamSearch
  *
+ *
+ * *Note que o objetivo da busca em feixe é de expandir os nós mais promissores em um número
+ *limitado de expansão, para então se gerar sucessores a fim de encontrar o resultado
+ *desejado (Norvig, 1992). O algorimto aqui implementado é uma pequena variacao do BeamSearch, pois
+ *o problema proposto foi do caixeiro viajante, ou seja, nao temos um nó alvo especifico.
+ *Nossa heuristica foi a seguinte: O algoritmo expande os 5 melhores nós filhos (M = 5) mais promissores, onde
+ *o nó alvo seria o proprio nó atual, porem obrigando a se visitar 2 nós (percorrendo o menor caminho)
+ * antes de chegar ao nó alvo.
+ *
+ *
  *De maneira geral o algoritmo funciona da seguinte forma:
  *Para cada cidade visitada, teremos 5 possiveis caminhos.
  *Ex: A cidade atual é a 7, escolhemos as 5 cidades mais proximas da cidade 7.
@@ -7,6 +17,7 @@
  *Entao, somanos o caminho da cidade 7 até a sua mais proxima e a mais proxima desta ultima.
  *Escolhemos a menor soma e visitamos as duas cidades pertencentes a essa menor soma.
  *O algorimto é iterado, até acabarem as cidades.
+ *
  */
 
 #include "beamsearch.h"
